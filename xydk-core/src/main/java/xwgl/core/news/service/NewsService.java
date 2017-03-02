@@ -17,13 +17,10 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import xwgl.common.service.SimpleCurdService;
-import xwgl.core.news.entity.Comment;
 import xwgl.core.news.entity.News;
 import xwgl.core.news.entity.NewsCategory;
 import xwgl.core.news.repository.NewsCategoryRespository;
-import xwgl.core.news.repository.NewsCommentRespository;
 import xwgl.core.news.repository.NewsRespository;
-import xwgl.core.sys.entity.User;
 @Service
 public class NewsService extends SimpleCurdService<News, Long> {
 	
@@ -34,9 +31,7 @@ public class NewsService extends SimpleCurdService<News, Long> {
 	@Autowired
 	private NewsCategoryRespository newsCategoryRespository;
 	
-	@Autowired
-	private NewsCommentRespository newsCommentRespository;
-	
+
 	public List<News> findByCategory(NewsCategory categoy){
 		return this.newsRepository.findByCategoryOrderByCreateDateDesc(categoy);
 	}
@@ -48,20 +43,7 @@ public class NewsService extends SimpleCurdService<News, Long> {
 	public Long count(){
 		return this.newsRepository.count();
 	}
-	public void saveComment(Comment comment){
-		this.newsCommentRespository.save(comment);
-	}
-	public void deleteComment(Comment comment){
-		this.newsCommentRespository.delete(comment);
-	}
 	
-	public void deleteComment(Long id){
-		this.newsCommentRespository.delete(id);
-	}
-	
-	public List<Comment> findCommentByUser(User user){
-		return this.newsCommentRespository.findByUser(user);
-	}
 	/***
 	 * 
 	 * @param pageNumber start form 1

@@ -1,10 +1,8 @@
 package xwgl.core.news.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -31,17 +29,7 @@ public class News extends BaseEntity<Long> implements Serializable{
 	@OneToOne
 	private User user;
 	
-	@OneToMany( mappedBy = "news")
-	public List<Comment> comments;
 	
-	
-	public List<Comment> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
-	}
 
 	public String getTitle() {
 		return title;
